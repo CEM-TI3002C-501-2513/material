@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi página</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
     <header>
+        <h1 class="fondo_rojo subrayado_azul">Prueba CSS</h1>
         <nav>
             Thales
             <!-- Unordered List -->
@@ -74,6 +76,41 @@
             <figcaption>Boeing 737 despegando</figcaption>
         </figure>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/1oDrJba2PSs?si=tANkiFXIsOINkDAj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <form action="/formulario.html">
+            <div>
+                <label for="email">Correo electrónico</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div>
+                <label for="contraseña">Contraseña</label>
+                <input type="password" name="contraseña" id="contraseña">
+            </div>
+            <div>
+                Tipos de delitos:
+                <label for="alto">Delitos de alto impacto</label>
+                <input type="checkbox" name="alto" id="alto" checked>
+                <label for="medio">Delitos de medio impacto</label>
+                <input type="checkbox" name="medio" id="medio">
+                <label for="bajo">Delitos de bajo impacto</label>
+                <input type="checkbox" name="bajo" id="bajo">
+            </div>
+            <div>
+                ¿Incluir predicción?
+                <label for="predicción">Sí</label>
+                <input type="radio" name="predicción" id="sí">
+                <label for="predicción">No</label>
+                <input type="radio" name="predicción" id="no">
+            </div>
+            <div>
+                <label for="wards">Selecciona el ward que deseas ver:</label>
+                <select name="wards" id="wards">
+                    <option value="Ward 1">Ward 1</option>
+                    <option value="Ward 2">Ward 2</option>
+                    <option value="Ward 3">Ward 3</option>
+                    <option value="Ward 4">Ward 4</option>
+                </select>
+            </div>
+        </form>
     </main>
     <footer></footer>
 </body>
