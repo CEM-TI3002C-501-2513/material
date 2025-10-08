@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Thales</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <header>
+        <div class="flex justify-between items-center mx-auto p-4 text-blue-900 container">
+            <div class="flex items-center space-x-4">
+                <img class="w-24" src="/images/logo.png" alt="Logo de Thales">
+                <span class="font-bold text-2xl">Predicción de crimen</span>
+            </div>
+            <nav>
+                <ul class="flex space-x-4 font-semibold text-lg">
+                    <li><a class="hover:bg-gray-50/50 p-4 hover:text-blue-700 hover:underline" href="/index.html">Inicio</a></li>
+                    <li><a class="hover:bg-gray-50/50 p-4 hover:text-blue-700 hover:underline" href="/dashboards.html">Dashboards</a></li>
+                    <li><a class="hover:bg-gray-50/50 p-4 hover:text-blue-700 hover:underline" href="/mapas.html">Mapas</a></li>
+                    <li><a class="hover:bg-gray-50/50 p-4 hover:text-blue-700 hover:underline" href="/predicciones.html">Predicciones</a></li>
+                    <li><a class="hover:bg-gray-50/50 p-4 hover:text-blue-700 hover:underline" href="/acerca.html">Acerca del sitio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="bg-[url(/images/hero.jpg)] bg-center py-32">
+        <div class="mx-auto container">
+            <div class="bg-gray-950/70 p-10 rounded-lg max-w-3xl text-white">
+                <h1 class="mb-4 font-bold text-6xl">Plataforma Thales</h1>
+                <p class="mb-4 text-lg text-justify">Una solución integral para la visualización y análisis de datos. Descubre insights valiosos a través de nuestros dashboards interactivos, mapas geoespaciales y modelos predictivos avanzados.</p>
+                <div class="text-center">
+                    <a class="inline-block bg-gradient-to-br from-sky-500 hover:from-sky-400 to-indigo-700 hover:shadow-lg px-6 py-4 rounded-lg font-semibold hover:scale-110 hover:-translate-y-0.5 duration-300 delay-75" href="/dashboards.html">Comienza a explorar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <main class="text-gray-700">
+        <section class="flex space-x-6 shadow-lg mx-auto mt-10 mb-10 rounded-xl h-96 overflow-hidden container">
+            <div class="w-1/2">
+                <img class=""  src="/images/dashboards.jpg" alt="Dashboards con gráficos sobre datos descriptivos de crimen">
+            </div>
+            <div class="flex flex-col justify-center space-y-4 p-6 w-1/2">
+                <h2 class="font-bold text-2xl">Dashboards Interactivos</h2>
+                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, atque vitae! Illo, in? Et adipisci, ex aspernatur iusto odio, culpa fuga blanditiis enim, beatae ipsa quam velit dolores architecto dolorem!</p>
+                <div class="text-center">
+                    <a class="inline-block bg-gradient-to-br from-indigo-500 hover:from-indigo-400 to-purple-700 shadow-lg hover:shadow-2xl px-6 py-4 rounded-lg font-bold text-white hover:scale-110 hover:-translate-y-0.5 duration-300 delay-75" href="/dashboards.html">
+                        Ir a dashboards
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="bg-gray-900 mt-10 py-6 text-gray-300">
+            <div class="mx-auto text-center container">
+                <p>&copy; 2024 Proyecto Thales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
