@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Crimen en Chicago - Proyecto Thales</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-100">
+    <!-- Navigation Menu -->
+    <header class="top-0 z-50 sticky bg-slate-900 shadow-md text-white">
+        <nav class="mx-auto px-6 py-3 container">
+            <div class="flex justify-between items-center">
+                <div class="font-bold text-xl tracking-tight">
+                    <a href="index.html" class="hover:text-cyan-400 transition-colors">Chicago Crime Prediction</a>
+                </div>
+                <ul class="flex space-x-6 text-sm">
+                    <li><a href="index.html" class="pb-1 border-cyan-400 border-b-2 font-medium hover:text-cyan-400 transition-colors">Inicio</a></li>
+                    <li><a href="tableros.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Tableros</a></li>
+                    <li><a href="prediccion.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Predicción</a></li>
+                    <li><a href="mapa.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Mapa de Delitos</a></li>
+                    <li><a href="acerca.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Acerca de</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-slate-800 py-32 overflow-hidden text-white">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-800/90"></div>
+        <div class="z-10 relative mx-auto px-6 container">
+            <div class="max-w-3xl">
+                <h1 class="mb-6 font-bold text-5xl leading-tight">Predicción de Crimen en Chicago</h1>
+                <p class="mb-8 text-slate-200 text-xl leading-relaxed">Análisis avanzado y predicción de patrones delictivos utilizando datos históricos e inteligencia artificial</p>
+                <div class="flex gap-4">
+                    <a href="prediccion.html" class="bg-cyan-500 hover:bg-cyan-600 px-8 py-3 font-semibold text-white transition-colors">
+                        Hacer una Predicción →
+                    </a>
+                    <a href="tableros.html" class="hover:bg-white/10 px-8 py-3 border-2 border-white font-semibold text-white transition-colors">
+                        Ver Tableros
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <main class="mx-auto px-6 py-20 container">
+        <h2 class="mb-4 font-bold text-slate-900 text-4xl">Explora Nuestras Herramientas</h2>
+        <p class="mb-16 max-w-2xl text-slate-600 text-lg">Descubre las funcionalidades de nuestra plataforma de análisis predictivo de criminalidad</p>
+        
+        <div class="space-y-8">
+            <!-- Card 1: Tableros -->
+            <div class="bg-white shadow-sm hover:shadow-xl border border-slate-200 overflow-hidden transition-shadow duration-300">
+                <div class="gap-0 grid md:grid-cols-2">
+                    <div class="h-80 md:h-auto overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" 
+                             alt="Tableros de análisis" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex flex-col justify-center p-10">
+                        <h3 class="mb-4 font-bold text-slate-900 text-3xl">Tableros de Análisis</h3>
+                        <p class="mb-6 text-slate-600 text-lg leading-relaxed">
+                            Visualiza estadísticas detalladas y tendencias de criminalidad en Chicago mediante gráficos interactivos y dashboards dinámicos que facilitan la comprensión de patrones complejos.
+                        </p>
+                        <div>
+                            <a href="tableros.html" class="inline-block bg-slate-900 hover:bg-cyan-500 px-8 py-3 font-semibold text-white transition-colors">
+                                Ver Tableros →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Predicción -->
+            <div class="bg-white shadow-sm hover:shadow-xl border border-slate-200 overflow-hidden transition-shadow duration-300">
+                <div class="gap-0 grid md:grid-cols-2">
+                    <div class="md:order-2 h-80 md:h-auto overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" 
+                             alt="Predicción con IA" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex flex-col justify-center md:order-1 p-10">
+                        <h3 class="mb-4 font-bold text-slate-900 text-3xl">Modelo Predictivo</h3>
+                        <p class="mb-6 text-slate-600 text-lg leading-relaxed">
+                            Utiliza nuestro avanzado modelo de inteligencia artificial para predecir la probabilidad de ocurrencia de crímenes en áreas específicas de la ciudad con alta precisión.
+                        </p>
+                        <div>
+                            <a href="prediccion.html" class="inline-block bg-slate-900 hover:bg-cyan-500 px-8 py-3 font-semibold text-white transition-colors">
+                                Hacer Predicción →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Mapa de Delitos -->
+            <div class="bg-white shadow-sm hover:shadow-xl border border-slate-200 overflow-hidden transition-shadow duration-300">
+                <div class="gap-0 grid md:grid-cols-2">
+                    <div class="h-80 md:h-auto overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=600&fit=crop" 
+                             alt="Mapa interactivo de delitos" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex flex-col justify-center p-10">
+                        <h3 class="mb-4 font-bold text-slate-900 text-3xl">Mapa Interactivo de Delitos</h3>
+                        <p class="mb-6 text-slate-600 text-lg leading-relaxed">
+                            Explora un mapa geoespacial interactivo que muestra la ubicación, distribución y concentración de incidentes criminales en diferentes zonas de Chicago.
+                        </p>
+                        <div>
+                            <a href="mapa.html" class="inline-block bg-slate-900 hover:bg-cyan-500 px-8 py-3 font-semibold text-white transition-colors">
+                                Ver Mapa →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Acerca de -->
+            <div class="bg-white shadow-sm hover:shadow-xl border border-slate-200 overflow-hidden transition-shadow duration-300">
+                <div class="gap-0 grid md:grid-cols-2">
+                    <div class="md:order-2 h-80 md:h-auto overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop" 
+                             alt="Equipo de trabajo" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex flex-col justify-center md:order-1 p-10">
+                        <h3 class="mb-4 font-bold text-slate-900 text-3xl">Acerca del Proyecto</h3>
+                        <p class="mb-6 text-slate-600 text-lg leading-relaxed">
+                            Conoce más sobre el proyecto, la metodología aplicada, las fuentes de datos utilizadas y el equipo multidisciplinario detrás de esta innovadora herramienta.
+                        </p>
+                        <div>
+                            <a href="acerca.html" class="inline-block bg-slate-900 hover:bg-cyan-500 px-8 py-3 font-semibold text-white transition-colors">
+                                Más Información →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info Section -->
+        <div class="bg-slate-50 mt-20 p-10 border-cyan-500 border-l-4">
+            <h2 class="mb-6 font-bold text-slate-900 text-3xl">¿Qué es Chicago Crime Prediction?</h2>
+            <p class="mb-4 text-slate-700 text-lg leading-relaxed">
+                Este proyecto utiliza técnicas avanzadas de análisis de datos e inteligencia artificial para predecir patrones de criminalidad en la ciudad de Chicago. Nuestro objetivo es proporcionar herramientas útiles para la prevención del crimen y la toma de decisiones informadas basadas en evidencia.
+            </p>
+            <p class="text-slate-700 text-lg leading-relaxed">
+                Exploramos datos históricos de crímenes, identificamos tendencias y patrones complejos, y utilizamos modelos predictivos de última generación para ayudar a anticipar dónde y cuándo podrían ocurrir eventos delictivos en el futuro.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 mt-20 py-12 text-white">
+        <div class="mx-auto px-6 container">
+            <div class="text-center">
+                <p class="mb-2 text-lg">&copy; 2025 Chicago Crime Prediction - Proyecto Thales</p>
+                <p class="text-slate-400">Análisis y predicción de crimen basado en datos históricos de Chicago</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

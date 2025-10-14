@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Delitos - Chicago Crime Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-100">
+    <!-- Navigation Menu -->
+    <header class="top-0 z-50 sticky bg-slate-900 shadow-md text-white">
+        <nav class="mx-auto px-6 py-3 container">
+            <div class="flex justify-between items-center">
+                <div class="font-bold text-xl tracking-tight">
+                    <a href="index.html" class="hover:text-cyan-400 transition-colors">Chicago Crime Prediction</a>
+                </div>
+                <ul class="flex space-x-6 text-sm">
+                    <li><a href="index.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Inicio</a></li>
+                    <li><a href="tableros.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Tableros</a></li>
+                    <li><a href="prediccion.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Predicción</a></li>
+                    <li><a href="mapa.html" class="pb-1 border-cyan-400 border-b-2 font-medium hover:text-cyan-400 transition-colors">Mapa de Delitos</a></li>
+                    <li><a href="acerca.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Acerca de</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-slate-800 py-16 text-white">
+        <div class="mx-auto px-6 container">
+            <div class="max-w-4xl">
+                <div class="flex items-center mb-4">
+                    <svg class="mr-4 w-12 h-12 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                    </svg>
+                    <h1 class="font-bold text-4xl">Mapa Interactivo de Delitos</h1>
+                </div>
+                <p class="text-slate-200 text-xl leading-relaxed">
+                    Visualiza la distribución geográfica y temporal de los crímenes en Chicago. Explora patrones espaciales y observa la evolución de la criminalidad a través del tiempo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="mx-auto px-6 py-12 container">
+        
+        <!-- Map Features Info -->
+        <div class="gap-6 grid md:grid-cols-3 mb-8">
+            <div class="bg-white p-6 border border-slate-200 rounded-lg">
+                <div class="flex items-center mb-3">
+                    <div class="flex justify-center items-center bg-cyan-100 mr-3 rounded-lg w-12 h-12">
+                        <svg class="w-7 h-7 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-lg">Ubicación Precisa</h3>
+                </div>
+                <p class="text-slate-600 text-sm">
+                    Cada punto en el mapa representa la ubicación exacta donde ocurrió un incidente criminal.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 border border-slate-200 rounded-lg">
+                <div class="flex items-center mb-3">
+                    <div class="flex justify-center items-center bg-cyan-100 mr-3 rounded-lg w-12 h-12">
+                        <svg class="w-7 h-7 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-lg">Línea de Tiempo</h3>
+                </div>
+                <p class="text-slate-600 text-sm">
+                    Filtra y visualiza los crímenes según diferentes períodos de tiempo y observa patrones temporales.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 border border-slate-200 rounded-lg">
+                <div class="flex items-center mb-3">
+                    <div class="flex justify-center items-center bg-cyan-100 mr-3 rounded-lg w-12 h-12">
+                        <svg class="w-7 h-7 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-lg">Mapas de Calor</h3>
+                </div>
+                <p class="text-slate-600 text-sm">
+                    Identifica zonas de alta concentración delictiva mediante visualizaciones de densidad de calor.
+                </p>
+            </div>
+        </div>
+
+        <!-- Tableau Map Section -->
+        <div class="bg-white shadow-sm p-8 border border-slate-200 rounded-lg">
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-3">
+                    <div>
+                        <h2 class="mb-2 font-bold text-slate-900 text-3xl">Mapa Geoespacial de Criminalidad</h2>
+                        <p class="text-slate-600 text-lg">
+                            Explora la distribución espacial y temporal de los delitos reportados en la ciudad de Chicago
+                        </p>
+                    </div>
+                    <div class="hidden md:block">
+                        <svg class="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tableau Public Iframe -->
+            <div class="bg-slate-50 border-2 border-slate-300 rounded-lg w-full overflow-hidden" style="height: 850px;">
+                <iframe 
+                    src="https://public.tableau.com/shared/PHNRXDKPB?:embed=true&:showVizHome=no"
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0"
+                    allowfullscreen
+                    class="w-full h-full">
+                </iframe>
+            </div>
+
+            <div class="bg-cyan-50 mt-6 p-5 border-cyan-500 border-l-4 rounded">
+                <div class="flex items-start">
+                    <svg class="flex-shrink-0 mt-0.5 mr-3 w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <p class="mb-1 font-semibold text-cyan-900">Configuración del Mapa</p>
+                        <p class="text-slate-700 text-sm">
+                            Reemplaza <code class="bg-slate-200 px-2 py-1 rounded font-mono text-sm">YOUR_TABLEAU_PUBLIC_MAP_URL_HERE</code> con la URL de embed de tu dashboard de mapa de Tableau Public.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Features Guide -->
+        <div class="bg-gradient-to-r from-slate-800 to-slate-700 shadow-xl mt-12 p-10 rounded-lg text-white">
+            <h2 class="flex items-center mb-8 font-bold text-3xl">
+                <svg class="mr-3 w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                </svg>
+                Cómo Interactuar con el Mapa
+            </h2>
+            <div class="gap-8 grid md:grid-cols-2">
+                <div>
+                    <h3 class="mb-4 font-semibold text-cyan-300 text-xl">Controles de Navegación</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 mt-0.5 mr-3 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                            </svg>
+                            <span class="text-slate-200"><strong class="text-white">Zoom:</strong> Usa la rueda del ratón o los controles + / - para acercar o alejar el mapa</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 mt-0.5 mr-3 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
+                            </svg>
+                            <span class="text-slate-200"><strong class="text-white">Desplazar:</strong> Haz clic y arrastra para moverte por diferentes áreas de Chicago</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 mt-0.5 mr-3 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            <span class="text-slate-200"><strong class="text-white">Detalles:</strong> Pasa el cursor sobre los puntos para ver información detallada de cada incidente</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="mb-4 font-semibold text-cyan-300 text-xl">Filtros y Línea de Tiempo</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 mt-0.5 mr-3 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-slate-200"><strong class="text-white">Período:</strong> Selecciona rangos de fechas para visualizar crímenes en períodos específicos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 mt-0.5 mr-3 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                            </svg>
+                            <span class="text-slate-200"><strong class="text-white">Tipo:</strong> Filtra por categorías de delitos para análisis más específicos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 mt-0.5 mr-3 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            <span class="text-slate-200"><strong class="text-white">Animación:</strong> Reproduce la línea de tiempo para observar la evolución temporal de los crímenes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights Section -->
+        <div class="gap-8 grid md:grid-cols-2 mt-12">
+            <!-- Geographic Patterns -->
+            <div class="bg-white shadow-sm p-8 border border-slate-200 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <div class="flex justify-center items-center bg-red-100 mr-3 rounded-lg w-12 h-12">
+                        <svg class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-xl">Patrones Geográficos</h3>
+                </div>
+                <p class="mb-4 text-slate-600">
+                    El mapa revela concentraciones significativas de criminalidad en ciertas zonas de Chicago:
+                </p>
+                <ul class="space-y-2 text-slate-700">
+                    <li class="flex items-start">
+                        <span class="mt-1 mr-2 text-red-500">●</span>
+                        <span>Áreas del South Side muestran mayor densidad de incidentes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mt-1 mr-2 text-yellow-500">●</span>
+                        <span>El centro (Loop) presenta patrones distintos relacionados con comercio</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mt-1 mr-2 text-green-500">●</span>
+                        <span>Zonas residenciales del North Side tienen menor incidencia</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Temporal Patterns -->
+            <div class="bg-white shadow-sm p-8 border border-slate-200 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <div class="flex justify-center items-center bg-blue-100 mr-3 rounded-lg w-12 h-12">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-xl">Patrones Temporales</h3>
+                </div>
+                <p class="mb-4 text-slate-600">
+                    La línea de tiempo permite identificar variaciones en la ocurrencia de crímenes:
+                </p>
+                <ul class="space-y-2 text-slate-700">
+                    <li class="flex items-start">
+                        <span class="mt-1 mr-2 text-blue-500">●</span>
+                        <span>Incrementos nocturnos en ciertas categorías de delitos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mt-1 mr-2 text-blue-500">●</span>
+                        <span>Variaciones estacionales a lo largo del año</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mt-1 mr-2 text-blue-500">●</span>
+                        <span>Patrones de fin de semana vs. días laborales</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Data Source Info -->
+        <div class="bg-slate-50 mt-12 p-8 border-slate-900 border-l-4 rounded">
+            <h3 class="flex items-center mb-4 font-bold text-slate-900 text-xl">
+                <svg class="mr-2 w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Fuente de Datos
+            </h3>
+            <div class="gap-6 grid md:grid-cols-3 text-slate-700">
+                <div>
+                    <p class="mb-1 font-semibold text-slate-900">Origen</p>
+                    <p class="text-sm">Chicago Police Department - Datos públicos de criminalidad</p>
+                </div>
+                <div>
+                    <p class="mb-1 font-semibold text-slate-900">Actualización</p>
+                    <p class="text-sm">Los datos se actualizan periódicamente para reflejar reportes recientes</p>
+                </div>
+                <div>
+                    <p class="mb-1 font-semibold text-slate-900">Cobertura</p>
+                    <p class="text-sm">Incluye múltiples años de registros históricos georreferenciados</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 mt-20 py-12 text-white">
+        <div class="mx-auto px-6 container">
+            <div class="text-center">
+                <p class="mb-2 text-lg">&copy; 2025 Chicago Crime Prediction - Proyecto Thales</p>
+                <p class="text-slate-400">Análisis y predicción de crimen basado en datos históricos de Chicago</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

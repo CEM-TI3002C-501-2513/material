@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Crimen - Chicago Crime Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-100">
+    <!-- Navigation Menu -->
+    <header class="top-0 z-50 sticky bg-slate-900 shadow-md text-white">
+        <nav class="mx-auto px-6 py-3 container">
+            <div class="flex justify-between items-center">
+                <div class="font-bold text-xl tracking-tight">
+                    <a href="index.html" class="hover:text-cyan-400 transition-colors">Chicago Crime Prediction</a>
+                </div>
+                <ul class="flex space-x-6 text-sm">
+                    <li><a href="index.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Inicio</a></li>
+                    <li><a href="tableros.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Tableros</a></li>
+                    <li><a href="prediccion.html" class="pb-1 border-cyan-400 border-b-2 font-medium hover:text-cyan-400 transition-colors">Predicción</a></li>
+                    <li><a href="mapa.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Mapa de Delitos</a></li>
+                    <li><a href="acerca.html" class="pb-1 border-transparent border-b-2 hover:text-cyan-400 transition-colors">Acerca de</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-slate-800 py-16 text-white">
+        <div class="mx-auto px-6 container">
+            <div class="max-w-4xl">
+                <h1 class="mb-4 font-bold text-4xl">Predicción de Criminalidad</h1>
+                <p class="text-slate-200 text-xl leading-relaxed">
+                    Utiliza nuestro modelo de inteligencia artificial para predecir la probabilidad de crímenes en una zona específica de Chicago según la fecha y hora seleccionadas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="mx-auto px-6 py-12 container">
+        
+        <div class="gap-8 grid lg:grid-cols-3">
+            
+            <!-- Prediction Form -->
+            <div class="lg:col-span-1">
+                <div class="top-24 sticky bg-white p-8 border border-slate-200">
+                    <h2 class="mb-6 font-bold text-slate-900 text-2xl">Parámetros de Predicción</h2>
+                    
+                    <form id="predictionForm" class="space-y-6">
+                        <!-- Ward Selection -->
+                        <div>
+                            <label for="ward" class="block mb-2 font-semibold text-slate-700 text-sm">
+                                Zona (Ward) *
+                            </label>
+                            <select 
+                                id="ward" 
+                                name="ward" 
+                                required
+                                class="px-4 py-3 border border-slate-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500 w-full text-slate-900">
+                                <option value="">Selecciona una zona...</option>
+                                <option value="1">Ward 1 - Loop</option>
+                                <option value="2">Ward 2 - Near South Side</option>
+                                <option value="3">Ward 3 - South Side</option>
+                                <option value="4">Ward 4 - Hyde Park</option>
+                                <option value="5">Ward 5 - Bronzeville</option>
+                                <option value="6">Ward 6 - South Shore</option>
+                                <option value="7">Ward 7 - South Chicago</option>
+                                <option value="8">Ward 8 - East Side</option>
+                                <option value="9">Ward 9 - Roseland</option>
+                                <option value="10">Ward 10 - Beverly</option>
+                                <option value="11">Ward 11 - Bridgeport</option>
+                                <option value="12">Ward 12 - McKinley Park</option>
+                                <option value="13">Ward 13 - Southwest Side</option>
+                                <option value="14">Ward 14 - Brighton Park</option>
+                                <option value="15">Ward 15 - West Lawn</option>
+                                <option value="16">Ward 16 - Ashburn</option>
+                                <option value="17">Ward 17 - Auburn Gresham</option>
+                                <option value="18">Ward 18 - Englewood</option>
+                                <option value="19">Ward 19 - West Englewood</option>
+                                <option value="20">Ward 20 - New City</option>
+                                <option value="21">Ward 21 - North Lawndale</option>
+                                <option value="22">Ward 22 - Little Village</option>
+                                <option value="23">Ward 23 - Archer Heights</option>
+                                <option value="24">Ward 24 - West Side</option>
+                                <option value="25">Ward 25 - Austin</option>
+                                <option value="26">Ward 26 - West Humboldt Park</option>
+                                <option value="27">Ward 27 - Logan Square</option>
+                                <option value="28">Ward 28 - Near West Side</option>
+                                <option value="29">Ward 29 - West Town</option>
+                                <option value="30">Ward 30 - Lincoln Park</option>
+                                <option value="31">Ward 31 - North Center</option>
+                                <option value="32">Ward 32 - Lakeview</option>
+                                <option value="33">Ward 33 - Near North Side</option>
+                                <option value="34">Ward 34 - Uptown</option>
+                                <option value="35">Ward 35 - Edgewater</option>
+                                <option value="36">Ward 36 - Rogers Park</option>
+                                <option value="37">Ward 37 - West Ridge</option>
+                                <option value="38">Ward 38 - Lincoln Square</option>
+                                <option value="39">Ward 39 - Albany Park</option>
+                                <option value="40">Ward 40 - North Park</option>
+                                <option value="41">Ward 41 - O'Hare</option>
+                                <option value="42">Ward 42 - Portage Park</option>
+                                <option value="43">Ward 43 - Jefferson Park</option>
+                                <option value="44">Ward 44 - Dunning</option>
+                                <option value="45">Ward 45 - Belmont Cragin</option>
+                                <option value="46">Ward 46 - Hermosa</option>
+                                <option value="47">Ward 47 - Humboldt Park</option>
+                                <option value="48">Ward 48 - Garfield Park</option>
+                                <option value="49">Ward 49 - Austin West</option>
+                                <option value="50">Ward 50 - West Garfield Park</option>
+                            </select>
+                        </div>
+
+                        <!-- Date Selection -->
+                        <div>
+                            <label for="date" class="block mb-2 font-semibold text-slate-700 text-sm">
+                                Fecha *
+                            </label>
+                            <input 
+                                type="date" 
+                                id="date" 
+                                name="date" 
+                                required
+                                class="px-4 py-3 border border-slate-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500 w-full text-slate-900">
+                        </div>
+
+                        <!-- Time Selection -->
+                        <div>
+                            <label for="time" class="block mb-2 font-semibold text-slate-700 text-sm">
+                                Hora del Día *
+                            </label>
+                            <select 
+                                id="time" 
+                                name="time" 
+                                required
+                                class="px-4 py-3 border border-slate-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500 w-full text-slate-900">
+                                <option value="">Selecciona una hora...</option>
+                                <option value="0">00:00 - 01:00 (Madrugada)</option>
+                                <option value="1">01:00 - 02:00 (Madrugada)</option>
+                                <option value="2">02:00 - 03:00 (Madrugada)</option>
+                                <option value="3">03:00 - 04:00 (Madrugada)</option>
+                                <option value="4">04:00 - 05:00 (Madrugada)</option>
+                                <option value="5">05:00 - 06:00 (Amanecer)</option>
+                                <option value="6">06:00 - 07:00 (Mañana)</option>
+                                <option value="7">07:00 - 08:00 (Mañana)</option>
+                                <option value="8">08:00 - 09:00 (Mañana)</option>
+                                <option value="9">09:00 - 10:00 (Mañana)</option>
+                                <option value="10">10:00 - 11:00 (Mañana)</option>
+                                <option value="11">11:00 - 12:00 (Mediodía)</option>
+                                <option value="12">12:00 - 13:00 (Mediodía)</option>
+                                <option value="13">13:00 - 14:00 (Tarde)</option>
+                                <option value="14">14:00 - 15:00 (Tarde)</option>
+                                <option value="15">15:00 - 16:00 (Tarde)</option>
+                                <option value="16">16:00 - 17:00 (Tarde)</option>
+                                <option value="17">17:00 - 18:00 (Tarde)</option>
+                                <option value="18">18:00 - 19:00 (Noche)</option>
+                                <option value="19">19:00 - 20:00 (Noche)</option>
+                                <option value="20">20:00 - 21:00 (Noche)</option>
+                                <option value="21">21:00 - 22:00 (Noche)</option>
+                                <option value="22">22:00 - 23:00 (Noche)</option>
+                                <option value="23">23:00 - 00:00 (Noche)</option>
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button 
+                            type="submit"
+                            class="bg-slate-900 hover:bg-cyan-500 py-3 w-full font-semibold text-white transition-colors">
+                            Generar Predicción
+                        </button>
+                    </form>
+
+                    <!-- Info Box -->
+                    <div class="bg-cyan-50 mt-6 p-4 border-cyan-500 border-l-4">
+                        <p class="text-slate-700 text-sm">
+                            <strong>Nota:</strong> Los resultados son predicciones basadas en datos históricos y modelos estadísticos. No deben usarse como única fuente para tomar decisiones de seguridad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="lg:col-span-2">
+                <div class="bg-white p-8 border border-slate-200">
+                    <h2 class="mb-6 font-bold text-slate-900 text-2xl">Resultados de la Predicción</h2>
+
+                    <!-- Results Container - Now always visible with example data -->
+                    <div id="resultsContainer" class="space-y-8">
+
+                        <!-- Prediction Summary -->
+                        <div class="bg-gradient-to-r from-slate-900 to-slate-800 shadow-lg p-6 rounded text-white">
+                            <div class="flex items-center mb-3">
+                                <svg class="mr-2 w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <h3 class="font-bold text-xl">Predicción para:</h3>
+                            </div>
+                            <div class="gap-4 grid md:grid-cols-3 text-center">
+                                <div class="bg-white/10 backdrop-blur p-3 rounded">
+                                    <p class="mb-1 text-cyan-300 text-sm">Zona</p>
+                                    <p class="font-bold text-white text-lg" id="resultWard">Ward 32 - Lakeview</p>
+                                </div>
+                                <div class="bg-white/10 backdrop-blur p-3 rounded">
+                                    <p class="mb-1 text-cyan-300 text-sm">Fecha</p>
+                                    <p class="font-bold text-white text-lg" id="resultDate">15 de Octubre, 2025</p>
+                                </div>
+                                <div class="bg-white/10 backdrop-blur p-3 rounded">
+                                    <p class="mb-1 text-cyan-300 text-sm">Hora</p>
+                                    <p class="font-bold text-white text-lg" id="resultTime">20:00 - 21:00 hrs</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Crime Probability Table -->
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <svg class="mr-2 w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                                <h3 class="font-bold text-slate-900 text-2xl">Probabilidad de Criminalidad por Impacto</h3>
+                            </div>
+                            
+                            <div class="bg-white shadow-lg border-2 border-slate-200 rounded-lg overflow-hidden">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+                                            <th class="px-6 py-4 font-semibold text-left">
+                                                <div class="flex items-center">
+                                                    <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                                    </svg>
+                                                    Nivel de Impacto
+                                                </div>
+                                            </th>
+                                            <th class="px-6 py-4 font-semibold text-center">
+                                                <div class="flex justify-center items-center">
+                                                    <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                                    </svg>
+                                                    Probabilidad
+                                                </div>
+                                            </th>
+                                            <th class="px-6 py-4 font-semibold text-left">
+                                                <div class="flex items-center">
+                                                    <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                                    </svg>
+                                                    Indicador Visual
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <!-- Low Impact -->
+                                        <tr class="hover:bg-green-50 transition-colors">
+                                            <td class="px-6 py-5">
+                                                <div class="flex items-center">
+                                                    <div class="flex flex-shrink-0 justify-center items-center bg-green-100 mr-4 rounded-lg w-12 h-12">
+                                                        <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-bold text-slate-900 text-lg">Bajo Impacto</p>
+                                                        <p class="flex items-center mt-1 text-slate-600 text-sm">
+                                                            <svg class="mr-1 w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                            </svg>
+                                                            Delitos menores, vandalismo, infracciones
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-5 text-center">
+                                                <div class="inline-flex flex-col items-center">
+                                                    <span class="font-bold text-green-600 text-4xl">45.2%</span>
+                                                    <span class="bg-green-100 mt-1 px-3 py-1 rounded-full font-semibold text-slate-500 text-xs">Riesgo Moderado</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-5">
+                                                <div class="w-full">
+                                                    <div class="flex justify-between items-center mb-1">
+                                                        <span class="font-semibold text-slate-600 text-xs">Nivel de confianza</span>
+                                                        <span class="font-semibold text-green-600 text-xs">45.2%</span>
+                                                    </div>
+                                                    <div class="bg-slate-200 shadow-inner rounded-full w-full h-4">
+                                                        <div class="flex justify-end items-center bg-gradient-to-r from-green-500 to-green-600 shadow-md pr-2 rounded-full h-4 transition-all duration-500" style="width: 45.2%">
+                                                            <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Medium Impact -->
+                                        <tr class="hover:bg-yellow-50 transition-colors">
+                                            <td class="px-6 py-5">
+                                                <div class="flex items-center">
+                                                    <div class="flex flex-shrink-0 justify-center items-center bg-yellow-100 mr-4 rounded-lg w-12 h-12">
+                                                        <svg class="w-7 h-7 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-bold text-slate-900 text-lg">Medio Impacto</p>
+                                                        <p class="flex items-center mt-1 text-slate-600 text-sm">
+                                                            <svg class="mr-1 w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                            </svg>
+                                                            Robos, hurtos, fraudes, daños a propiedad
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-5 text-center">
+                                                <div class="inline-flex flex-col items-center">
+                                                    <span class="font-bold text-yellow-600 text-4xl">38.7%</span>
+                                                    <span class="bg-yellow-100 mt-1 px-3 py-1 rounded-full font-semibold text-slate-500 text-xs">Precaución</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-5">
+                                                <div class="w-full">
+                                                    <div class="flex justify-between items-center mb-1">
+                                                        <span class="font-semibold text-slate-600 text-xs">Nivel de confianza</span>
+                                                        <span class="font-semibold text-yellow-600 text-xs">38.7%</span>
+                                                    </div>
+                                                    <div class="bg-slate-200 shadow-inner rounded-full w-full h-4">
+                                                        <div class="flex justify-end items-center bg-gradient-to-r from-yellow-500 to-yellow-600 shadow-md pr-2 rounded-full h-4 transition-all duration-500" style="width: 38.7%">
+                                                            <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- High Impact -->
+                                        <tr class="hover:bg-red-50 transition-colors">
+                                            <td class="px-6 py-5">
+                                                <div class="flex items-center">
+                                                    <div class="flex flex-shrink-0 justify-center items-center bg-red-100 mr-4 rounded-lg w-12 h-12">
+                                                        <svg class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-bold text-slate-900 text-lg">Alto Impacto</p>
+                                                        <p class="flex items-center mt-1 text-slate-600 text-sm">
+                                                            <svg class="mr-1 w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                            </svg>
+                                                            Agresiones, asaltos, crímenes violentos
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-5 text-center">
+                                                <div class="inline-flex flex-col items-center">
+                                                    <span class="font-bold text-red-600 text-4xl">16.1%</span>
+                                                    <span class="bg-red-100 mt-1 px-3 py-1 rounded-full font-semibold text-slate-500 text-xs">Alerta Alta</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-5">
+                                                <div class="w-full">
+                                                    <div class="flex justify-between items-center mb-1">
+                                                        <span class="font-semibold text-slate-600 text-xs">Nivel de confianza</span>
+                                                        <span class="font-semibold text-red-600 text-xs">16.1%</span>
+                                                    </div>
+                                                    <div class="bg-slate-200 shadow-inner rounded-full w-full h-4">
+                                                        <div class="flex justify-end items-center bg-gradient-to-r from-red-500 to-red-600 shadow-md pr-2 rounded-full h-4 transition-all duration-500" style="width: 16.1%">
+                                                            <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Summary Stats -->
+                            <div class="gap-4 grid grid-cols-3 mt-4">
+                                <div class="bg-slate-50 p-4 border border-slate-200 rounded-lg text-center">
+                                    <p class="mb-1 text-slate-600 text-xs">Probabilidad Total</p>
+                                    <p class="font-bold text-slate-900 text-2xl">100%</p>
+                                </div>
+                                <div class="bg-cyan-50 p-4 border border-cyan-200 rounded-lg text-center">
+                                    <p class="mb-1 text-slate-600 text-xs">Nivel de Confianza</p>
+                                    <p class="font-bold text-cyan-600 text-2xl">87.3%</p>
+                                </div>
+                                <div class="bg-slate-50 p-4 border border-slate-200 rounded-lg text-center">
+                                    <p class="mb-1 text-slate-600 text-xs">Datos Analizados</p>
+                                    <p class="font-bold text-slate-900 text-2xl">45,892</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Most Common Crime -->
+                        <div class="bg-gradient-to-r from-slate-800 to-slate-700 shadow-xl p-8 rounded-lg text-white">
+                            <div class="flex items-center mb-4">
+                                <svg class="mr-3 w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                                <h3 class="font-bold text-2xl">Delito Más Común en esta Zona</h3>
+                            </div>
+                            <div class="gap-6 grid md:grid-cols-3">
+                                <div class="md:col-span-2 bg-white/10 backdrop-blur p-6 rounded-lg">
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex justify-center items-center bg-cyan-400 mr-4 rounded-lg w-16 h-16">
+                                            <svg class="w-9 h-9 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-cyan-300 text-4xl">THEFT</p>
+                                            <p class="mt-1 text-slate-300">Robo / Hurto</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center text-slate-200">
+                                        <svg class="mr-2 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                        </svg>
+                                        <span class="font-semibold text-cyan-300 text-2xl">34.5%</span>
+                                        <span class="ml-2">de todos los incidentes reportados</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col justify-center bg-white/10 backdrop-blur p-6 rounded-lg">
+                                    <div class="text-center">
+                                        <svg class="mx-auto mb-2 w-12 h-12 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <p class="mb-1 text-slate-300 text-sm">Período de análisis</p>
+                                        <p class="font-bold text-white text-xl">Últimos 12 meses</p>
+                                        <p class="mt-2 text-slate-400 text-xs">3,247 incidentes analizados</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Crimes Table -->
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <svg class="mr-2 w-6 h-6 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                                </svg>
+                                <h3 class="font-bold text-slate-900 text-2xl">Últimos 5 Delitos Reportados en la Zona</h3>
+                            </div>
+                            <div class="bg-white shadow-lg border-2 border-slate-200 rounded-lg overflow-hidden">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="bg-gradient-to-r from-slate-100 to-slate-50 border-slate-300 border-b-2">
+                                            <th class="px-5 py-4 font-bold text-slate-700 text-sm text-left">
+                                                <div class="flex items-center">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                    </svg>
+                                                    Fecha
+                                                </div>
+                                            </th>
+                                            <th class="px-5 py-4 font-bold text-slate-700 text-sm text-left">
+                                                <div class="flex items-center">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    Hora
+                                                </div>
+                                            </th>
+                                            <th class="px-5 py-4 font-bold text-slate-700 text-sm text-left">
+                                                <div class="flex items-center">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                                    </svg>
+                                                    Tipo de Delito
+                                                </div>
+                                            </th>
+                                            <th class="px-5 py-4 font-bold text-slate-700 text-sm text-left">Descripción</th>
+                                            <th class="px-5 py-4 font-bold text-slate-700 text-sm text-center">
+                                                <div class="flex justify-center items-center">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                                    </svg>
+                                                    Impacto
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <!-- Crime 1 -->
+                                        <tr class="hover:bg-yellow-50 transition-colors">
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center font-medium text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    10/07/2025
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    18:30
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="bg-yellow-500 mr-2 rounded-full w-2 h-2"></div>
+                                                    <span class="font-bold text-slate-900 text-sm">THEFT</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4 text-slate-600 text-sm">Retail Theft</td>
+                                            <td class="px-5 py-4 text-center">
+                                                <span class="inline-flex items-center bg-yellow-100 px-3 py-1.5 border border-yellow-300 rounded-full font-bold text-yellow-800 text-xs">
+                                                    <svg class="mr-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                                    </svg>
+                                                    Medio
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Crime 2 -->
+                                        <tr class="hover:bg-red-50 transition-colors">
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center font-medium text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    10/07/2025
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    14:15
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="bg-red-500 mr-2 rounded-full w-2 h-2"></div>
+                                                    <span class="font-bold text-slate-900 text-sm">BATTERY</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4 text-slate-600 text-sm">Simple Battery</td>
+                                            <td class="px-5 py-4 text-center">
+                                                <span class="inline-flex items-center bg-red-100 px-3 py-1.5 border border-red-300 rounded-full font-bold text-red-800 text-xs">
+                                                    <svg class="mr-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    Alto
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Crime 3 -->
+                                        <tr class="hover:bg-green-50 transition-colors">
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center font-medium text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    10/06/2025
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    22:45
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="bg-green-500 mr-2 rounded-full w-2 h-2"></div>
+                                                    <span class="font-bold text-slate-900 text-sm">CRIMINAL DAMAGE</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4 text-slate-600 text-sm">Vandalism</td>
+                                            <td class="px-5 py-4 text-center">
+                                                <span class="inline-flex items-center bg-green-100 px-3 py-1.5 border border-green-300 rounded-full font-bold text-green-800 text-xs">
+                                                    <svg class="mr-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    Bajo
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Crime 4 -->
+                                        <tr class="hover:bg-red-50 transition-colors">
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center font-medium text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    10/06/2025
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    16:20
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="bg-red-500 mr-2 rounded-full w-2 h-2"></div>
+                                                    <span class="font-bold text-slate-900 text-sm">BURGLARY</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4 text-slate-600 text-sm">Forcible Entry</td>
+                                            <td class="px-5 py-4 text-center">
+                                                <span class="inline-flex items-center bg-red-100 px-3 py-1.5 border border-red-300 rounded-full font-bold text-red-800 text-xs">
+                                                    <svg class="mr-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    Alto
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Crime 5 -->
+                                        <tr class="hover:bg-yellow-50 transition-colors">
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center font-medium text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    10/05/2025
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center text-slate-900 text-sm">
+                                                    <svg class="mr-2 w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    11:00
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="bg-yellow-500 mr-2 rounded-full w-2 h-2"></div>
+                                                    <span class="font-bold text-slate-900 text-sm">DECEPTIVE PRACTICE</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4 text-slate-600 text-sm">Financial Identity Theft</td>
+                                            <td class="px-5 py-4 text-center">
+                                                <span class="inline-flex items-center bg-yellow-100 px-3 py-1.5 border border-yellow-300 rounded-full font-bold text-yellow-800 text-xs">
+                                                    <svg class="mr-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                                    </svg>
+                                                    Medio
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Additional Context -->
+                        <div class="p-6 border border-slate-200">
+                            <h3 class="mb-3 font-bold text-slate-900 text-lg">Contexto Adicional</h3>
+                            <ul class="space-y-2 text-slate-700">
+                                <li class="flex items-start">
+                                    <svg class="flex-shrink-0 mt-0.5 mr-2 w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>La predicción se basa en más de 500,000 registros históricos de criminalidad</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="flex-shrink-0 mt-0.5 mr-2 w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>El modelo considera factores como día de la semana, hora, zona geográfica y tendencias históricas</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="flex-shrink-0 mt-0.5 mr-2 w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>Los resultados tienen un nivel de confianza del 85% basado en validaciones cruzadas</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="bg-white mt-12 p-8 border border-slate-200">
+            <h2 class="mb-6 font-bold text-slate-900 text-2xl">¿Cómo Funciona la Predicción?</h2>
+            <div class="gap-6 grid md:grid-cols-4">
+                <div class="text-center">
+                    <div class="flex justify-center items-center bg-cyan-100 mx-auto mb-4 rounded-full w-16 h-16">
+                        <span class="font-bold text-cyan-600 text-2xl">1</span>
+                    </div>
+                    <h3 class="mb-2 font-semibold text-slate-900">Recopilación de Datos</h3>
+                    <p class="text-slate-600 text-sm">Se recopilan datos históricos de crímenes de Chicago</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex justify-center items-center bg-cyan-100 mx-auto mb-4 rounded-full w-16 h-16">
+                        <span class="font-bold text-cyan-600 text-2xl">2</span>
+                    </div>
+                    <h3 class="mb-2 font-semibold text-slate-900">Análisis de Patrones</h3>
+                    <p class="text-slate-600 text-sm">Identificación de patrones temporales y espaciales</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex justify-center items-center bg-cyan-100 mx-auto mb-4 rounded-full w-16 h-16">
+                        <span class="font-bold text-cyan-600 text-2xl">3</span>
+                    </div>
+                    <h3 class="mb-2 font-semibold text-slate-900">Modelo Predictivo</h3>
+                    <p class="text-slate-600 text-sm">Aplicación de algoritmos de machine learning</p>
+                </div>
+                <div class="text-center">
+                    <div class="flex justify-center items-center bg-cyan-100 mx-auto mb-4 rounded-full w-16 h-16">
+                        <span class="font-bold text-cyan-600 text-2xl">4</span>
+                    </div>
+                    <h3 class="mb-2 font-semibold text-slate-900">Resultados</h3>
+                    <p class="text-slate-600 text-sm">Generación de probabilidades y recomendaciones</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 mt-20 py-12 text-white">
+        <div class="mx-auto px-6 container">
+            <div class="text-center">
+                <p class="mb-2 text-lg">&copy; 2025 Chicago Crime Prediction - Proyecto Thales</p>
+                <p class="text-slate-400">Análisis y predicción de crimen basado en datos históricos de Chicago</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
