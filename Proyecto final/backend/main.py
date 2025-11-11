@@ -17,6 +17,7 @@ class CrimeData(BaseModel):
 
 load_dotenv()
 POSTGRES_URL = os.getenv("POSTGRES_URL")
+model = joblib.load("crime_impact_model.joblib")
 
 app = FastAPI()
 
@@ -32,9 +33,18 @@ async def get_top_primary_types():
             results = await cur.fetchall()
     return results
 
+@app.get("/wards")
+async def get_wards():
+    async with await psycopg.AsyncConnection.connect(POSTGRES_URL, row_factory=dict_row) as conn:
+        async with conn.cursor() as cur:
+            await cur.execute("""SELECT DISTINCT ward 
+                              FROM datacrimes 
+                              ORDER BY ward;""")
+            results = [x["ward"] for x in await cur.fetchall()]
+    return results
+
 @app.post("/predict_impact")
 async def post_predict_impact(crime_data: CrimeData):
-    model = joblib.load("crime_impact_model.joblib")
     df = pd.DataFrame({
         "hour": [crime_data.hour],
         "month": [crime_data.month],
