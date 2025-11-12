@@ -13,7 +13,8 @@ app = Dash(
     title="Ejemplo de sitio en Dash",
     update_title="Cargando...",
     use_async=True,
-    use_pages=True
+    use_pages=True,
+    suppress_callback_exceptions=True # Agregar hasta que su proyecto esté funcionando bien
 )
 
 header = html.Header(
@@ -26,6 +27,11 @@ header = html.Header(
         dcc.Link(
             children="Datos",
             href="/datos",
+            className="font-bold text-xl ml-4"
+        ),
+        dcc.Link(
+            children="Predicción",
+            href="/prediccion",
             className="font-bold text-xl ml-4"
         ),
         ],
