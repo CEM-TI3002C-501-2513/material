@@ -1,0 +1,13 @@
+[project]
+name = "frontend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dash-ag-grid>=32.3.2",
+    "dash-svg>=0.0.12",
+    "dash[async]>=3.3.0",
+    "httpx>=0.28.1",
+    "pandas>=2.3.3",
+]
