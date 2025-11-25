@@ -11,18 +11,12 @@ from typing import Literal, Dict, Any
 from google import genai
 from google.genai import types
 
-# GEMINI HELPER FUNCTIONS
-
-import asyncio
-import os
-import sys
-import psycopg
-from psycopg.rows import dict_row
-from dotenv import load_dotenv
 
 load_dotenv()
 POSTGRES_URL = os.getenv("POSTGRES_URL")
 model = joblib.load("crime_impact_model.joblib")
+
+# GEMINI HELPER FUNCTIONS
 
 async def get_columns():
     async with await psycopg.AsyncConnection.connect(POSTGRES_URL, row_factory=dict_row) as conn:
